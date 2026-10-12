@@ -120,28 +120,41 @@ ul.w li::before{border-left-color:#fff}
 .photo-card .pc-overlay{position:absolute;inset:0;background:rgba(19,35,61,.78)}
 .photo-card .pc-body{position:relative;padding:32px 40px;height:100%;display:flex;flex-direction:column}
 
-/* ── Карточка с фото — плавный переход ── */
-.tcard{position:relative;background:#F6F6F6;border-radius:40px;overflow:hidden;display:flex;flex-direction:column}
+/* ── tcard: слайды 6 (серый) и 7 (белый) ── */
+.tcard{display:flex;flex-direction:column;border-radius:40px;overflow:hidden;background:#F6F6F6}
 .tcard-light{background:#fff}
-.tcard-photo{position:relative;height:54%;flex-shrink:0;overflow:hidden}
+.tcard-photo{position:relative;height:46%;flex-shrink:0}
 .tcard-photo img{width:100%;height:100%;object-fit:cover;display:block}
-.tcard-photo::after{content:'';position:absolute;left:0;right:0;bottom:0;height:55%;
-  background:linear-gradient(to bottom,rgba(246,246,246,0) 0%,rgba(246,246,246,.75) 55%,#F6F6F6 100%);
+.tcard-photo::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:40%;
+  background:linear-gradient(to bottom,rgba(246,246,246,0) 0%,rgba(246,246,246,.6) 55%,#F6F6F6 100%);
   pointer-events:none}
 .tcard-light .tcard-photo::after{
-  background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.75) 55%,#fff 100%)}
-.tcard-photo--solid{height:45%}
-.tcard-photo--solid::after{display:none}
-.tcard-body{flex:1;position:relative;margin-top:-90px;padding:0 36px 36px;background:transparent}
-.tcard-photo--solid + .tcard-body{margin-top:0;padding-top:32px}
+  background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.6) 55%,#fff 100%)}
+.tcard-body{position:relative;z-index:1;flex:1;margin-top:-28px;background:#F6F6F6;
+  border-radius:28px 28px 0 0;padding:28px 36px 36px;
+  box-shadow:0 -18px 28px rgba(246,246,246,.85)}
+.tcard-light .tcard-body{background:#fff;box-shadow:0 -18px 28px rgba(255,255,255,.85)}
 .tcard-body .label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;
                    line-height:1.2;letter-spacing:.02em;text-transform:uppercase;
-                   color:#13233D;margin-bottom:12px}
-.tcard-body .h3{font-size:30px;line-height:1.2;margin-bottom:12px;color:#13233D}
+                   color:#13233D;margin-bottom:10px}
+.tcard-body .h3{font-size:30px;line-height:1.2;color:#13233D;margin-bottom:16px}
 .tcard-body ul.tri{font-size:24px;line-height:1.3}
 .tcard-body ul.tri li{color:#3B3B38}
-.tcard-body ul.tri li+li{margin-top:8px}
+.tcard-body ul.tri li+li{margin-top:10px}
 .tcard-body ul.tri li::before{border-left-color:#13233D}
+/* ── fcard: слайд 8 Опыт выступлений ── */
+.fcard{display:flex;flex-direction:column;border-radius:40px;overflow:hidden;background:#F6F6F6}
+.fcard-photo{position:relative;height:60%;flex-shrink:0}
+.fcard-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.fcard-photo::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:35%;
+  background:linear-gradient(to bottom,rgba(246,246,246,0) 0%,rgba(246,246,246,.6) 55%,#F6F6F6 100%);
+  pointer-events:none}
+.fcard-body{position:relative;z-index:1;flex:1;margin-top:-28px;background:#F6F6F6;
+  border-radius:28px 28px 0 0;padding:28px 40px 40px;
+  box-shadow:0 -18px 28px rgba(246,246,246,.85);display:flex;flex-direction:column}
+.fcard-body .h3{font-size:36px;line-height:1.15;color:#13233D}
+.fcard-body .site{font-size:24px;color:rgba(59,59,56,.55);margin:6px 0 16px}
+.fcard-body .topic{font-size:28px;line-height:1.3;color:#3B3B38}
 </style>
 </head>
 <body>
@@ -305,10 +318,9 @@ ul.w li::before{border-left-color:#fff}
     <div class="h1" style="margin-bottom:44px">Социальные треки<br><span class="g">в компании</span></div>
     <div style="flex:1;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:24px;min-height:0">
 
-      <!-- 01: нет фото → тёмный блок с цифрой -->
       <div class="tcard">
-        <div class="tcard-photo tcard-photo--solid" style="background:#13233D">
-          <div style="position:absolute;left:36px;bottom:28px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:140px;line-height:1;color:#fff;pointer-events:none">01</div>
+        <div class="tcard-photo">
+          <img src="photos/socio-duo.jpg" style="object-position:center 35%" alt="">
         </div>
         <div class="tcard-body">
           <div class="label">01 · Рождаемость</div>
@@ -321,10 +333,9 @@ ul.w li::before{border-left-color:#fff}
         </div>
       </div>
 
-      <!-- 02: нет фото → тёмный блок с цифрой -->
       <div class="tcard">
-        <div class="tcard-photo tcard-photo--solid" style="background:#13233D">
-          <div style="position:absolute;left:36px;bottom:28px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:140px;line-height:1;color:#fff;pointer-events:none">02</div>
+        <div class="tcard-photo">
+          <img src="photos/irina-red-mic.jpg" style="object-position:center 35%" alt="">
         </div>
         <div class="tcard-body">
           <div class="label">02 · Здоровье</div>
@@ -337,13 +348,12 @@ ul.w li::before{border-left-color:#fff}
         </div>
       </div>
 
-      <!-- 03: фото настольный теннис -->
       <div class="tcard">
         <div class="tcard-photo">
-          <img src="photos/pingpong-1.jpg" style="object-position:center 45%" alt="">
+          <img src="photos/pingpong-1.jpg" style="object-position:center 40%" alt="">
         </div>
         <div class="tcard-body">
-          <div class="label">03 · Здоровый образ жизни</div>
+          <div class="label">03 · ЗОЖ</div>
           <div class="h3">Программа «Брось курить»</div>
           <ul class="tri">
             <li>Надбавка за 6+ месяцев без курения</li>
@@ -353,7 +363,6 @@ ul.w li::before{border-left-color:#fff}
         </div>
       </div>
 
-      <!-- 04: фото йога -->
       <div class="tcard">
         <div class="tcard-photo">
           <img src="photos/yoga-1.jpg" style="object-position:center 30%" alt="">
@@ -386,7 +395,7 @@ ul.w li::before{border-left-color:#fff}
 
       <div class="tcard tcard-light">
         <div class="tcard-photo">
-          <img src="photos/humanitarian-z.jpg" style="object-position:center 20%" alt="">
+          <img src="photos/humanitarian-z.jpg" style="object-position:center 25%" alt="">
         </div>
         <div class="tcard-body">
           <div class="h3">Участники СВО и их семьи</div>
@@ -401,7 +410,7 @@ ul.w li::before{border-left-color:#fff}
 
       <div class="tcard tcard-light">
         <div class="tcard-photo">
-          <img src="photos/children-stage.jpg" style="object-position:center 40%" alt="">
+          <img src="photos/children-stage.jpg" style="object-position:center 45%" alt="">
         </div>
         <div class="tcard-body">
           <div class="h3">Ветераны ВОВ и дети войны</div>
@@ -415,7 +424,7 @@ ul.w li::before{border-left-color:#fff}
 
       <div class="tcard tcard-light">
         <div class="tcard-photo">
-          <img src="photos/sport-awards.jpg" style="object-position:center 35%" alt="">
+          <img src="photos/sport-awards.jpg" style="object-position:center 30%" alt="">
         </div>
         <div class="tcard-body">
           <div class="h3">Наставничество семей</div>
@@ -429,7 +438,7 @@ ul.w li::before{border-left-color:#fff}
 
       <div class="tcard tcard-light">
         <div class="tcard-photo">
-          <img src="photos/sport-holiday.jpg" style="object-position:center 30%" alt="">
+          <img src="photos/sport-holiday.jpg" style="object-position:center 55%" alt="">
         </div>
         <div class="tcard-body">
           <div class="h3">Образование и храмы</div>
@@ -457,36 +466,36 @@ ul.w li::before{border-left-color:#fff}
     </div>
     <div style="flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;min-height:0">
 
-      <div class="tcard">
-        <div class="tcard-photo" style="height:58%;border-radius:40px 40px 0 0">
-          <img src="photos/socio-close.jpg" style="object-position:70% 25%" alt="">
+      <div class="fcard">
+        <div class="fcard-photo">
+          <img src="photos/socio-close.jpg" style="object-position:65% 25%" alt="">
         </div>
-        <div class="tcard-body" style="padding-bottom:40px">
-          <div class="h3" style="font-size:34px;margin-bottom:8px">V Форум «СОЦИО»</div>
-          <div style="font-size:24px;color:var(--muted);margin-bottom:14px">socioforum.pro</div>
-          <div style="font-size:26px;line-height:1.3;color:var(--graphite)">«Взаимодействие органов власти, бизнеса и НКО»</div>
-        </div>
-      </div>
-
-      <div class="tcard">
-        <div class="tcard-photo" style="height:58%;border-radius:40px 40px 0 0">
-          <img src="photos/innoprom-tribune.jpg" style="object-position:20% 35%" alt="">
-        </div>
-        <div class="tcard-body" style="padding-bottom:40px">
-          <div class="h3" style="font-size:34px;margin-bottom:8px">ИННОПРОМ</div>
-          <div style="font-size:24px;color:var(--muted);margin-bottom:14px">innoprom.com</div>
-          <div style="font-size:26px;line-height:1.3;color:var(--graphite)">«Новые смыслы городской среды: роль жилой и индустриальной недвижимости»</div>
+        <div class="fcard-body">
+          <div class="h3">V Форум «СОЦИО»</div>
+          <div class="site">socioforum.pro</div>
+          <div class="topic">«Взаимодействие органов власти, бизнеса и НКО»</div>
         </div>
       </div>
 
-      <div class="tcard">
-        <div class="tcard-photo" style="height:58%;border-radius:40px 40px 0 0">
-          <img src="photos/forum100-tribune.jpg" style="object-position:60% 20%" alt="">
+      <div class="fcard">
+        <div class="fcard-photo">
+          <img src="photos/innoprom-tribune.jpg" style="object-position:25% 30%" alt="">
         </div>
-        <div class="tcard-body" style="padding-bottom:40px">
-          <div class="h3" style="font-size:34px;margin-bottom:8px">100+ TechnoBuild</div>
-          <div style="font-size:24px;color:var(--muted);margin-bottom:14px">forum-100.ru</div>
-          <div style="font-size:26px;line-height:1.3;color:var(--graphite)">«От инфраструктурных ограничений к точкам притяжения»</div>
+        <div class="fcard-body">
+          <div class="h3">ИННОПРОМ</div>
+          <div class="site">innoprom.com</div>
+          <div class="topic">«Новые смыслы городской среды: роль жилой и индустриальной недвижимости»</div>
+        </div>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-photo">
+          <img src="photos/forum100-tribune.jpg" style="object-position:60% 25%" alt="">
+        </div>
+        <div class="fcard-body">
+          <div class="h3">100+ TechnoBuild</div>
+          <div class="site">forum-100.ru</div>
+          <div class="topic">«От инфраструктурных ограничений к точкам притяжения»</div>
         </div>
       </div>
 
