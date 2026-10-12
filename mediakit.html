@@ -155,6 +155,15 @@ ul.w li::before{border-left-color:#fff}
 .fcard-body .h3{font-size:36px;line-height:1.15;color:#13233D}
 .fcard-body .site{font-size:24px;color:rgba(59,59,56,.55);margin:6px 0 16px}
 .fcard-body .topic{font-size:28px;line-height:1.3;color:#3B3B38}
+/* ── letter: карточки-письма (слайд 11) ── */
+.letter{background:#fff;border-radius:24px;padding:22px;
+        box-shadow:0 18px 40px rgba(0,0,0,.25);
+        width:100%;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center}
+.letter img{max-width:100%;max-height:100%;object-fit:contain;display:block;border-radius:6px}
+/* ── logo-pill: плашка логотипа (слайд 12) ── */
+.logo-pill{height:104px;padding:0 32px;background:#fff;border-radius:28px;
+           display:flex;align-items:center;box-shadow:0 8px 24px rgba(19,35,61,.12)}
+.logo-pill img{height:64px;width:auto;display:block;border-radius:6px}
 </style>
 </head>
 <body>
@@ -576,26 +585,39 @@ ul.w li::before{border-left-color:#fff}
 <div class="slide-frame"><div class="slide bg-dark is-dark">
   <div class="pad" style="padding-right:64px">
     <div class="h1" style="margin-bottom:44px">Признание<br><span class="g">и награды</span></div>
-    <div style="flex:1;display:flex;gap:40px;min-height:0">
+    <div style="flex:1;display:flex;gap:40px;min-height:0;align-items:flex-start">
+      <!-- Три письма -->
       <div style="flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;min-width:0">
-        <div style="display:flex;flex-direction:column;min-width:0">
-          <div class="photo" style="flex:1;border-radius:32px;margin-bottom:24px"><img src="photos/letter-governor.jpg" alt=""></div>
-          <div class="h3" style="font-size:30px">Губернатор Свердловской области</div>
-          <div class="small" style="margin-top:8px">Д. В. Паслер · 23.06.2026<br>За участие в социально значимых мероприятиях</div>
+        <div style="display:flex;flex-direction:column">
+          <div class="letter"><img src="photos/letter-governor-clean.jpg" alt=""></div>
+          <div style="margin-top:24px">
+            <div style="font-family:'Inter',sans-serif;font-weight:700;font-size:30px;line-height:1.3;color:#fff;min-height:2.4em">Губернатор Свердловской области</div>
+            <div style="font-family:'Inter',sans-serif;font-weight:400;font-size:24px;color:rgba(255,255,255,.6);margin-top:8px">Д. В. Паслер · 23.06.2026</div>
+            <div style="font-family:'Inter',sans-serif;font-weight:400;font-size:24px;line-height:1.3;color:rgba(255,255,255,.85);margin-top:6px">За участие в социально значимых мероприятиях</div>
+          </div>
         </div>
-        <div style="display:flex;flex-direction:column;min-width:0">
-          <div class="photo" style="flex:1;border-radius:32px;margin-bottom:24px"><img src="photos/letter-sreduralsk.jpg" alt=""></div>
-          <div class="h3" style="font-size:30px">Глава ГО Среднеуральск</div>
-          <div class="small" style="margin-top:8px">А. В. Стасёнок · 14.11.2025<br>За помощь ветеранам СВО и локальных войн</div>
+        <div style="display:flex;flex-direction:column">
+          <div class="letter"><img src="photos/letter-sreduralsk-clean.jpg" alt=""></div>
+          <div style="margin-top:24px">
+            <div style="font-family:'Inter',sans-serif;font-weight:700;font-size:30px;line-height:1.3;color:#fff;min-height:2.4em">Глава ГО Среднеуральск</div>
+            <div style="font-family:'Inter',sans-serif;font-weight:400;font-size:24px;color:rgba(255,255,255,.6);margin-top:8px">А. В. Стасёнок · 14.11.2025</div>
+            <div style="font-family:'Inter',sans-serif;font-weight:400;font-size:24px;line-height:1.3;color:rgba(255,255,255,.85);margin-top:6px">За помощь ветеранам СВО и локальных войн</div>
+          </div>
         </div>
-        <div style="display:flex;flex-direction:column;min-width:0">
-          <div class="photo" style="flex:1;border-radius:32px;margin-bottom:24px"><img src="photos/letter-military.jpg" alt=""></div>
-          <div class="h3" style="font-size:30px">Войсковая часть 34081</div>
-          <div class="small" style="margin-top:8px">20.05.2026<br>За гуманитарную помощь участникам СВО</div>
+        <div style="display:flex;flex-direction:column">
+          <div class="letter"><img src="photos/letter-military-clean.jpg" alt=""></div>
+          <div style="margin-top:24px">
+            <div style="font-family:'Inter',sans-serif;font-weight:700;font-size:30px;line-height:1.3;color:#fff;min-height:2.4em">Войсковая часть 34081</div>
+            <div style="font-family:'Inter',sans-serif;font-weight:400;font-size:24px;color:rgba(255,255,255,.6);margin-top:8px">20.05.2026</div>
+            <div style="font-family:'Inter',sans-serif;font-weight:400;font-size:24px;line-height:1.3;color:rgba(255,255,255,.85);margin-top:6px">За гуманитарную помощь участникам СВО</div>
+          </div>
         </div>
       </div>
+      <!-- Правая колонка: Также -->
       <div style="width:470px;flex-shrink:0;display:flex;flex-direction:column;gap:28px">
-        <div class="photo" style="height:260px;border-radius:32px;flex-shrink:0"><img src="photos/award-sreduralsk.jpg" style="object-position:55% 18%" alt=""></div>
+        <div style="aspect-ratio:1.39;border-radius:24px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.25)">
+          <img src="photos/award-sreduralsk.jpg" style="width:100%;height:100%;object-fit:cover;object-position:55% 18%;display:block" alt="">
+        </div>
         <div class="label">Также</div>
         <ul class="tri" style="font-size:24px;display:flex;flex-direction:column;gap:12px">
           <li><strong>Фонд «Поможем Поддержим»</strong> — системная помощь</li>
@@ -632,13 +654,13 @@ ul.w li::before{border-left-color:#fff}
   <!-- Кнопки: ряд 1 -->
   <div style="position:absolute;left:114px;top:760px;display:flex;gap:20px;align-items:center">
     <div class="pill" style="border-radius:28px">+7 982 753-55-25</div>
-    <div class="pill" style="border-radius:28px">elk-ural.ru</div>
+    <div class="logo-pill"><img src="photos/logo-severny-clean.png" alt="ТЛЦ «Северный»"></div>
   </div>
 
-  <!-- Кнопки: ряд 2 + логотип справа -->
+  <!-- Кнопки: ряд 2 -->
   <div style="position:absolute;left:114px;top:884px;display:flex;gap:20px;align-items:center">
     <div class="pill" style="border-radius:28px">officemanager@elk-ural.com</div>
-    <img src="photos/logo-severny.jpg" style="height:64px;width:auto;border-radius:8px;flex-shrink:0" alt="ТЛЦ «Северный»">
+    <div class="pill" style="border-radius:28px">elk-ural.ru</div>
   </div>
 
   <!-- Правая часть: фото от x=1180 до правого края -->
