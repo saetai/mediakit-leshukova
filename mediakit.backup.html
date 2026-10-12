@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Медиа-кит — Ирина Лешукова</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#13233D;
+  --graphite:#3B3B38;
+  --white:#FFFFFF;
+  --panel:#F9F9F9;
+  --card:#F6F6F6;
+  --quote-card:#EDF4FF;
+  --accent-blue:#3D5A8A;
+  --W:1920px;
+  --H:1080px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+html,body{overflow-x:hidden}
+html{background:#9FA4AE}
+body{font-family:'Inter',sans-serif;color:var(--graphite);
+     display:flex;flex-direction:column;align-items:center;gap:24px;padding:24px 0;
+     -webkit-font-smoothing:antialiased}
+
+.slide-frame{overflow:hidden;flex-shrink:0}
+.slide{width:var(--W);height:var(--H);position:relative;overflow:hidden;
+       display:flex;flex-direction:column;transform-origin:top left;
+       box-shadow:0 24px 80px rgba(0,0,0,.4)}
+@media print{
+  body{background:#fff;padding:0;gap:0}
+  .slide-frame{width:1920px!important;height:1080px!important;overflow:visible!important}
+  .slide{box-shadow:none;page-break-after:always;transform:none!important}
+  @page{size:1920px 1080px;margin:0}
+}
+
+.pad{padding:100px 96px 80px 124px;display:flex;flex-direction:column;flex:1;min-height:0}
+
+/* заголовки */
+.h1{font-family:'Montserrat',sans-serif;font-weight:800;font-size:79px;line-height:1;
+    text-transform:uppercase;margin-bottom:56px}
+.h1-alt{font-family:'Montserrat',sans-serif;font-weight:800;font-size:70px;line-height:1;
+        text-transform:uppercase;margin-bottom:44px}
+.h1-n{color:var(--navy)}
+.h1-g{color:var(--graphite)}
+.h2{font-family:'Inter',sans-serif;font-weight:700;font-size:50px;line-height:1.1;color:var(--navy)}
+.h3{font-family:'Inter',sans-serif;font-weight:700;font-size:45px;line-height:1.2;color:var(--navy)}
+
+/* тело */
+.body{font-family:'Inter',sans-serif;font-size:35px;line-height:1.2;color:var(--graphite)}
+.small-text{font-family:'Inter',sans-serif;font-size:28px;line-height:1.2;color:var(--graphite)}
+.footnote{font-family:'Inter',sans-serif;font-size:27px;line-height:1.3;color:var(--graphite);font-style:italic}
+
+/* цифры */
+.big-n{font-family:'Montserrat',sans-serif;font-weight:800;font-size:79px;line-height:1;color:var(--navy)}
+.stat-lbl{font-family:'Inter',sans-serif;font-size:35px;line-height:1.2;color:var(--graphite);margin-top:12px}
+
+/* маркеры ▶ */
+ul.tri{list-style:none;display:flex;flex-direction:column}
+ul.tri li{display:block;position:relative;padding-left:57px;font-size:40px;
+          line-height:1.2;color:var(--graphite);font-family:'Inter',sans-serif}
+ul.tri li+li{margin-top:36px}
+ul.tri li::before{content:'▶';position:absolute;left:0;top:.15em;font-size:26px;color:var(--navy)}
+ul.tri li strong{color:var(--navy)}
+
+/* маркеры □ (slides 8-9) */
+ul.sq{list-style:none;display:flex;flex-direction:column}
+ul.sq li{display:flex;align-items:flex-start;gap:28px;font-size:36px;
+         line-height:1.22;color:var(--graphite);font-family:'Inter',sans-serif}
+ul.sq li+li{margin-top:64px}
+ul.sq li::before{content:'';display:block;width:27px;height:27px;border-radius:5px;
+                 background:var(--navy);flex-shrink:0;margin-top:9px}
+ul.sq li strong{color:var(--navy);font-weight:700}
+
+/* хронология */
+ul.chron{list-style:none;display:flex;flex-direction:column}
+ul.chron li{display:flex;align-items:baseline;gap:26px;font-size:32px;line-height:1.1;
+             color:var(--graphite)}
+ul.chron li+li{margin-top:35px}
+ul.chron li::before{content:'▶';flex-shrink:0;font-size:22px;color:var(--navy)}
+ul.chron li strong{color:var(--navy);font-weight:700}
+
+/* компоненты */
+.card{background:var(--card);border-radius:48px;padding:60px 70px}
+.card-sm{background:var(--card);border-radius:48px;padding:40px 48px}
+.chip{background:var(--card);border-radius:30px;padding:28px 37px;
+      font-family:'Inter',sans-serif;font-size:32px;line-height:1.2;color:var(--graphite)}
+.pill{background:var(--navy);color:#fff;border-radius:28px;min-height:112px;
+      padding:0 48px;display:flex;align-items:center;
+      font-family:'Montserrat',sans-serif;font-weight:700;font-size:37px;line-height:1.2}
+.quote-card{background:var(--quote-card);border-radius:48px;padding:60px 70px 60px 100px;
+            position:relative;overflow:hidden}
+.quote-mark{position:absolute;left:-10px;top:-50px;font-family:'Montserrat',sans-serif;
+            font-weight:800;font-size:400px;line-height:1;color:#D8E5F7;pointer-events:none;
+            user-select:none}
+.quote-text{position:relative;z-index:1;font-family:'Inter',sans-serif;font-size:43px;
+            line-height:1.22;color:var(--graphite)}
+.quote-bold{font-weight:700;text-transform:uppercase;color:var(--navy)}
+</style>
+</head>
+<body>
+<div class="slide-frame">
+
+<div class="slide" style="background:var(--navy)">
+  <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.08;pointer-events:none"
+     viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <path d="M-200 280 Q480 100 960 280 T2120 280" stroke="#ffffff" stroke-width="1" fill="none"/>
+  <path d="M-200 360 Q480 180 960 360 T2120 360" stroke="#ffffff" stroke-width="1" fill="none"/>
+  <path d="M-200 440 Q480 260 960 440 T2120 440" stroke="#ffffff" stroke-width="1" fill="none"/>
+  <path d="M-200 520 Q480 340 960 520 T2120 520" stroke="#ffffff" stroke-width="1" fill="none"/>
+  <path d="M-200 600 Q480 420 960 600 T2120 600" stroke="#ffffff" stroke-width="1" fill="none"/>
+  <path d="M-200 680 Q480 500 960 680 T2120 680" stroke="#ffffff" stroke-width="1" fill="none"/>
+  <path d="M-200 760 Q480 580 960 760 T2120 760" stroke="#ffffff" stroke-width="1" fill="none"/>
+  <path d="M-200 840 Q480 660 960 840 T2120 840" stroke="#ffffff" stroke-width="1" fill="none"/>
+  <path d="M-200 920 Q480 740 960 920 T2120 920" stroke="#ffffff" stroke-width="1" fill="none"/>
+</svg>
+
+  <!-- LEFT column: 2 B&W карточки 300×420, radius 24px -->
+  <div style="position:absolute;left:48px;top:120px;width:300px;
+              display:flex;flex-direction:column;gap:16px;z-index:3">
+    <div style="height:420px;overflow:hidden;border-radius:24px;
+                filter:grayscale(1)brightness(.85)">
+      <img src="photos/irina-red-mic.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:center 10%;border-radius:48px;border-radius:0" alt="">
+    </div>
+    <div style="height:420px;overflow:hidden;border-radius:24px;
+                filter:grayscale(1)brightness(.85)">
+      <img src="photos/irina-folder-profile.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:center 12%;border-radius:48px;border-radius:0" alt="">
+    </div>
+  </div>
+
+  <!-- RIGHT column: 2 B&W карточки 300×420, radius 24px -->
+  <div style="position:absolute;right:48px;top:120px;width:300px;
+              display:flex;flex-direction:column;gap:16px;z-index:3">
+    <div style="height:420px;overflow:hidden;border-radius:24px;
+                filter:grayscale(1)brightness(.85)">
+      <img src="photos/innoprom-tribune.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:14% 30%;border-radius:48px;border-radius:0" alt="">
+    </div>
+    <div style="height:420px;overflow:hidden;border-radius:24px;
+                filter:grayscale(1)brightness(.85)">
+      <img src="photos/socio-close.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:74% 18%;border-radius:48px;border-radius:0" alt="">
+    </div>
+  </div>
+
+  <!-- CENTER: цветная карточка 620×780, radius 24px -->
+  <div style="position:absolute;left:50%;transform:translateX(-50%);
+              top:60px;width:620px;height:780px;border-radius:24px;overflow:hidden;z-index:5">
+    <img src="photos/irina-portrait-main.jpg"
+         style="width:100%;height:100%;object-fit:cover;object-position:center 6%;display:block">
+    <!-- gradient внутри карточки снизу в navy -->
+    <div style="position:absolute;bottom:0;left:0;right:0;height:320px;
+                background:linear-gradient(to top,#13233D 30%,transparent)"></div>
+  </div>
+
+  <!-- широкий градиент низа слайда -->
+  <div style="position:absolute;bottom:0;left:0;right:0;height:440px;z-index:6;
+              background:linear-gradient(to top,#13233D 55%,transparent)"></div>
+
+  <!-- ИМЯ + ПОДПИСЬ -->
+  <div style="position:absolute;bottom:120px;left:0;right:0;z-index:9;
+              text-align:center;padding:0 120px">
+    <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:120px;
+         line-height:1;color:#fff;text-transform:uppercase;
+         max-width:1300px;margin:0 auto;letter-spacing:-2px;
+         text-shadow:0 4px 40px rgba(0,0,0,.5)">
+      ИРИНА ЛЕШУКОВА
+    </div>
+    <div style="font-family:'Inter',sans-serif;font-size:30px;font-weight:400;
+         color:rgba(255,255,255,.7);margin-top:20px">
+      Исполнительный директор ТЛЦ «Северный» &nbsp;·&nbsp; Общественный деятель &nbsp;·&nbsp; Меценат
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="slide-frame">
+
+<div class="slide" style="background:radial-gradient(780px 640px at 100% 100%,rgba(61,90,138,.55),rgba(61,90,138,0) 70%),#fff;flex-direction:row">
+
+  <!-- ФОТО — левая колонка полная высота -->
+  <div style="position:relative;width:800px;flex-shrink:0;overflow:hidden">
+    <img src="photos/irina-portrait-main.jpg"
+         style="width:100%;height:100%;object-fit:cover;object-position:center 8%;display:block">
+    <div style="position:absolute;bottom:0;left:0;right:0;height:480px;
+                background:linear-gradient(to top,var(--navy) 38%,transparent)"></div>
+    <div style="position:absolute;bottom:54px;left:64px;right:44px;z-index:2">
+      <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:70px;
+           line-height:.95;color:#fff">
+        Ирина<br>Лешукова
+      </div>
+      <div style="font-family:'Inter',sans-serif;font-size:30px;
+           color:rgba(255,255,255,.82);margin-top:24px;line-height:1.3">
+        Исполнительный директор ТЛЦ «Северный»<br>
+        Общественный деятель · Меценат
+      </div>
+    </div>
+  </div>
+
+  <!-- ПРАВАЯ ЧАСТЬ -->
+  <div style="flex:1;display:flex;flex-direction:column;padding:100px 96px 80px 72px;min-width:0;
+              justify-content:center">
+    <div class="h2" style="margin-bottom:52px">Хронология<br>профессиональной карьеры:</div>
+
+    <ul class="chron">
+      <li><strong>Исполнительный директор ТЛЦ «Северный»</strong> — мультитемпературный склад класса «А», первый в УрФО</li>
+      <li><strong>Партнёры и клиенты</strong> — «Макдональдс», «Хави Логистик» (Екатеринбург, Новосибирск), крупные федеральные ретейлеры</li>
+      <li><strong>Общественная деятельность</strong> — поддержка участников СВО, детей-инвалидов, ветеранов ВОВ с 2016 года</li>
+      <li><strong>Спикер</strong> — ИННОПРОМ, СОЦИО Форум, 100+ TechnoBuild, форумы по соц. ответственности</li>
+      <li><strong>Награды</strong> — благодарственные письма от Губернатора Паслера, Главы ГО Среднеуральск, в/ч 34081 и 15+ иных структур</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<div class="slide-frame">
+
+<div class="slide" style="background:radial-gradient(780px 640px at 0% 0%,rgba(61,90,138,.55),rgba(61,90,138,0) 70%),#fff">
+  <div class="pad" style="flex-direction:row;gap:60px">
+
+    <!-- ЛЕВО: заголовок + сетка цифр -->
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
+      <div class="h1" style="margin-bottom:80px">
+        <span class="h1-n">ИРИНА ЛЕШУКОВА</span><br>
+        <span class="h1-g">В ЦИФРАХ</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:40px">
+        <div>
+          <div class="big-n">17+</div>
+          <div style="font-family:'Inter',sans-serif;font-size:40px;line-height:1.3;
+               color:var(--graphite);margin-top:16px">
+            лет в коммерческой<br>недвижимости<br>и логистике
+          </div>
+        </div>
+        <div>
+          <div class="big-n">8+</div>
+          <div style="font-family:'Inter',sans-serif;font-size:40px;line-height:1.3;
+               color:var(--graphite);margin-top:16px">
+            лет общественной<br>деятельности
+          </div>
+        </div>
+        <div>
+          <div class="big-n">200+</div>
+          <div style="font-family:'Inter',sans-serif;font-size:40px;line-height:1.3;
+               color:var(--graphite);margin-top:16px">
+            детей-инвалидов<br>под попечительством
+          </div>
+        </div>
+        <div>
+          <div class="big-n">15+</div>
+          <div style="font-family:'Inter',sans-serif;font-size:40px;line-height:1.3;
+               color:var(--graphite);margin-top:16px">
+            наград и<br>благодарственных<br>писем
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ПРАВО: фото -->
+    <div style="width:460px;flex-shrink:0;overflow:hidden;border-radius:48px;
+                margin:-80px -96px -80px 0">
+      <img src="photos/irina-red-mic.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:center 10%;border-radius:48px;border-radius:0" alt="">
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="slide-frame">
+
+<div class="slide" style="background:radial-gradient(780px 640px at 0% 0%,rgba(61,90,138,.55),rgba(61,90,138,0) 70%),#fff">
+  <div class="pad" style="flex-direction:row;gap:0;padding-right:0">
+
+    <!-- заголовок + бизнес-экспертиза -->
+    <div style="flex:1;display:flex;flex-direction:column;padding-right:56px">
+      <div class="h1"><span class="h1-n">ЭКСПЕРТИЗА</span></div>
+
+      <div class="h3" style="margin-bottom:28px">
+        Коммерческая недвижимость<br>и промышленная логистика
+      </div>
+      <ul class="tri" style="flex:1">
+        <li><strong style="color:var(--navy)">1. Аналитика и оценка</strong> — комплексный анализ активов, оценка эффективности, инвестиционная привлекательность</li>
+        <li><strong style="color:var(--navy)">2. Логистика и технологии</strong> — логистические процессы, внедрение новых технологий</li>
+        <li><strong style="color:var(--navy)">3. Кадры и инфраструктура</strong> — подбор персонала, нематериальная мотивация</li>
+        <li><strong style="color:var(--navy)">4. Строительство и земля</strong> — строительство промышленных объектов, эффективное использование участков</li>
+      </ul>
+    </div>
+
+    <!-- разделитель -->
+    <div style="width:1px;background:rgba(59,59,56,.12);flex-shrink:0;margin-top:0"></div>
+
+    <!-- социальная экспертиза -->
+    <div style="flex:1;display:flex;flex-direction:column;padding:100px 0 80px 56px">
+      <div class="h1" style="margin-bottom:40px"><span class="h1-n">СОЦИАЛЬНАЯ</span><br><span class="h1-g">ЭКСПЕРТИЗА</span></div>
+
+      <div class="h3" style="margin-bottom:28px">
+        Социальные инициативы<br>и наставничество
+      </div>
+      <ul class="tri" style="flex:1">
+        <li><strong style="color:var(--navy)">Социальные инициативы:</strong> создание и развитие, работа с незащищёнными слоями, развитие регионов и экономики</li>
+        <li><strong style="color:var(--navy)">Наставничество семей и детей-подростков:</strong> эффективное взаимодействие, система контроля, определение трека и его поддержка</li>
+      </ul>
+    </div>
+
+    <!-- фото-колонка -->
+    <div style="width:320px;flex-shrink:0;display:flex;flex-direction:column;gap:20px;
+                padding:80px 60px 80px 32px">
+      <div style="flex:1;overflow:hidden;border-radius:48px">
+        <img src="photos/innoprom-tribune.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:14% 30%;border-radius:48px;border-radius:0" alt="">
+      </div>
+      <div style="flex:1;overflow:hidden;border-radius:48px">
+        <img src="photos/socio-close.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:74% 18%;border-radius:48px;border-radius:0" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="slide-frame">
+
+<div class="slide" style="background:radial-gradient(780px 640px at 0% 100%,rgba(61,90,138,.55),rgba(61,90,138,0) 70%),#fff">
+  <div class="pad" style="flex-direction:row;gap:60px">
+
+    <div style="flex:1.1;display:flex;flex-direction:column">
+      <div class="h1">
+        <span class="h1-n">О КОМПАНИИ</span><br>
+        <span class="h1-g">ТЛЦ «СЕВЕРНЫЙ»</span>
+      </div>
+
+      <div style="width:260px;height:80px;margin-bottom:32px;overflow:hidden;border-radius:12px;background:#f0f4ff;display:flex;align-items:center;justify-content:center">
+        <img src="photos/logo-severny.jpg" style="max-width:240px;max-height:72px;object-fit:contain">
+      </div>
+
+      <ul class="tri" style="margin-bottom:40px">
+        <li><strong style="color:var(--navy)">Мультитемпературный склад класса «А»</strong> — уникальный в УрФО</li>
+        <li><strong style="color:var(--navy)">Партнёры:</strong> крупные федеральные ретейлеры</li>
+        <li><strong style="color:var(--navy)">Проекты:</strong> «Макдональдс» и «Хави Логистик» (Екатеринбург, Новосибирск)</li>
+        <li><strong style="color:var(--navy)">Услуги:</strong> хранение, обработка, транспортировка грузов</li>
+      </ul>
+
+      <div class="quote-card" style="max-width:640px">
+        <div class="quote-mark">"</div>
+        <div class="quote-text">
+          Качество нации зависит от качества еды, что мы едим. Мы вторые, после производителя, кто взаимодействует с продукцией
+        </div>
+      </div>
+    </div>
+
+    <div style="flex:.9;display:flex;flex-direction:column;gap:28px">
+      <div style="flex:1;overflow:hidden;border-radius:48px">
+        <img src="photos/warehouse-aerial.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:center center;border-radius:48px;border-radius:0" alt="">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+        <div>
+          <div class="big-n">19+</div>
+          <div class="stat-lbl">лет на рынке</div>
+        </div>
+        <div>
+          <div class="big-n" style="font-size:56px">60 000 м²</div>
+          <div class="stat-lbl">площадь комплекса</div>
+        </div>
+        <div>
+          <div class="big-n">10 000+</div>
+          <div class="stat-lbl">рабочих мест создано</div>
+        </div>
+        <div>
+          <div class="big-n">4</div>
+          <div class="stat-lbl">региона — Новосибирск, Екатеринбург, Краснодар, Казань</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="slide-frame">
+
+<div class="slide" style="background:radial-gradient(780px 640px at 100% 0%,rgba(61,90,138,.55),rgba(61,90,138,0) 70%),#fff">
+  <div class="pad">
+    <div class="h1"><span class="h1-n">СОЦИАЛЬНЫЕ</span><br><span class="h1-g">ТРЕКИ В КОМПАНИИ</span></div>
+
+    <div style="flex:1;display:flex;gap:28px;min-height:0">
+      <!-- 4 карточки -->
+      <div style="flex:1.5;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:20px;min-height:0">
+        <div class="card-sm" style="display:flex;flex-direction:column">
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:28px;
+               color:var(--navy);margin-bottom:14px">01 · РОЖДАЕМОСТЬ</div>
+          <div class="h3" style="font-size:40px;margin-bottom:18px">Поддержка в декрете</div>
+          <ul class="tri" style="font-size:32px">
+            <li>Выплаты от компании все 3 года</li>
+            <li>По стажу, зарплате и заслугам</li>
+            <li>Независимо от государственных выплат</li>
+          </ul>
+        </div>
+        <div class="card-sm" style="display:flex;flex-direction:column">
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:28px;
+               color:var(--navy);margin-bottom:14px">02 · ЗДОРОВЬЕ</div>
+          <div class="h3" style="font-size:40px;margin-bottom:18px">Медстрахование в декрете</div>
+          <ul class="tri" style="font-size:32px">
+            <li>Расширенный пакет: УЗИ и гинекология</li>
+            <li>На весь срок декрета</li>
+            <li>Матери в декрете не теряют медполис</li>
+          </ul>
+        </div>
+        <div class="card-sm" style="display:flex;flex-direction:column">
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:28px;
+               color:var(--navy);margin-bottom:14px">03 · ЗДОРОВЫЙ ОБРАЗ ЖИЗНИ</div>
+          <div class="h3" style="font-size:40px;margin-bottom:18px">Программа «Брось курить»</div>
+          <ul class="tri" style="font-size:32px">
+            <li>Надбавка за 6+ месяцев без курения</li>
+            <li>Настольный теннис на территории склада</li>
+            <li>−30% курильщиков в компании за 3 года</li>
+          </ul>
+        </div>
+        <div class="card-sm" style="display:flex;flex-direction:column">
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:28px;
+               color:var(--navy);margin-bottom:14px">04 · СПОРТ</div>
+          <div class="h3" style="font-size:40px;margin-bottom:18px">Йога на рабочем месте</div>
+          <ul class="tri" style="font-size:32px">
+            <li>2 раза в неделю прямо в офисе</li>
+            <li>Для всего коллектива — бесплатно</li>
+            <li>Тренер приезжает на рабочее место</li>
+          </ul>
+        </div>
+      </div>
+      <!-- фото -->
+      <div style="width:280px;display:flex;flex-direction:column;gap:20px">
+        <div style="flex:1;overflow:hidden;border-radius:48px">
+          <img src="photos/pingpong-1.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:20% 30%;border-radius:48px;border-radius:0" alt="">
+        </div>
+        <div style="flex:1;overflow:hidden;border-radius:48px">
+          <img src="photos/yoga-1.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:center 15%;border-radius:48px;border-radius:0" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="slide-frame">
+
+<div class="slide" style="background:radial-gradient(780px 640px at 0% 100%,rgba(61,90,138,.55),rgba(61,90,138,0) 70%),#fff">
+  <div class="pad" style="flex-direction:row;gap:48px">
+    <div style="flex:1.35;display:flex;flex-direction:column">
+      <div class="h1">
+        <span class="h1-n">СОЦИАЛЬНАЯ</span><br>
+        <span class="h1-g">ДЕЯТЕЛЬНОСТЬ</span>
+      </div>
+
+      <div class="quote-card" style="margin-bottom:32px;padding:40px 60px 40px 80px">
+        <div class="quote-mark" style="font-size:280px;top:-20px;left:-10px">"</div>
+        <div class="quote-text" style="font-size:36px">
+          Если все бизнесмены будут складывать долю своего дохода — мир изменится.
+          Время менять мир своим присутствием
+        </div>
+      </div>
+
+      <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="card-sm" style="padding:32px 36px">
+          <div class="h3" style="font-size:32px;margin-bottom:16px">Участники СВО и семьи</div>
+          <ul class="tri" style="font-size:30px">
+            <li>180+ под попечительством</li>
+            <li>Гуманитарные грузы 4 года</li>
+            <li>Ремонт адаптационного центра</li>
+            <li>15+ благодарственных писем из в/ч</li>
+          </ul>
+        </div>
+        <div class="card-sm" style="padding:32px 36px">
+          <div class="h3" style="font-size:32px;margin-bottom:16px">Ветераны ВОВ и дети войны</div>
+          <ul class="tri" style="font-size:30px">
+            <li>20+ человек ежегодно</li>
+            <li>Продуктовые корзины 2022–2026</li>
+            <li>Совместно с администрацией города</li>
+          </ul>
+        </div>
+        <div class="card-sm" style="padding:32px 36px">
+          <div class="h3" style="font-size:32px;margin-bottom:16px">Наставничество семей</div>
+          <ul class="tri" style="font-size:30px">
+            <li>10+ семей с 2020 года</li>
+            <li>200+ детей-инвалидов, Среднеуральск</li>
+            <li>4 города присутствия</li>
+          </ul>
+        </div>
+        <div class="card-sm" style="padding:32px 36px">
+          <div class="h3" style="font-size:32px;margin-bottom:16px">Образование и храмы</div>
+          <ul class="tri" style="font-size:30px">
+            <li>Шефство над МАОУ-СОШ №6 с 2025</li>
+            <li>Программа «Нравственное развитие»</li>
+            <li>Ремонт Храма свт. Николая</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="width:300px;flex-shrink:0;display:flex;flex-direction:column;gap:20px;padding-top:20px">
+      <div style="flex:1.3;overflow:hidden;border-radius:48px">
+        <img src="photos/humanitarian-z.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:center 12%;border-radius:48px;border-radius:0" alt="">
+      </div>
+      <div style="flex:1;overflow:hidden;border-radius:48px">
+        <img src="photos/children-stage.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:center 18%;border-radius:48px;border-radius:0" alt="">
+      </div>
+      <div style="flex:1;overflow:hidden;border-radius:48px">
+        <img src="photos/sport-awards.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:center 15%;border-radius:48px;border-radius:0" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="slide-frame">
+
+<div class="slide" style="background:radial-gradient(780px 640px at 0% 100%,rgba(61,90,138,.55),rgba(61,90,138,0) 70%),#fff">
+  <div class="pad">
+    <div class="h1">
+      <span class="h1-n">ОПЫТ</span><br>
+      <span class="h1-g">ВЫСТУПЛЕНИЙ</span>
+    </div>
+
+    <div class="quote-card" style="max-width:1200px;margin-bottom:40px;padding:44px 72px 44px 96px">
+      <div class="quote-mark" style="font-size:300px;top:-30px;left:-15px">"</div>
+      <div class="quote-text" style="font-size:38px">
+        Нужно взаимодействовать с государством. Только вместе мы можем реализовывать большие проекты —
+        каждая инициатива должна иметь нормативно-правовую значимость
+      </div>
+    </div>
+
+    <div style="flex:1;display:flex;gap:24px;min-height:0">
+      <!-- СОЦИО -->
+      <div class="card-sm" style="flex:1;display:flex;flex-direction:column;gap:20px">
+        <div style="height:88px;border-radius:16px;background:#1a1a1a;display:flex;align-items:center;padding:0 28px;flex-shrink:0">
+          <span style="color:#FF8C00;font-family:'Montserrat',sans-serif;font-weight:900;font-size:36px">СОЦИО</span>
+        </div>
+        <div class="h3">V Форум «СОЦИО»</div>
+        <div class="small-text" style="color:rgba(59,59,56,.5)">socioforum.pro</div>
+        <div class="body" style="flex:1">«Взаимодействие органов власти, бизнеса и НКО»</div>
+        <div style="height:160px;overflow:hidden;border-radius:24px;flex-shrink:0">
+          <img src="photos/socio-close.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:74% 18%;border-radius:48px;border-radius:0" alt="">
+        </div>
+      </div>
+
+      <!-- ИННОПРОМ -->
+      <div class="card-sm" style="flex:1;display:flex;flex-direction:column;gap:20px">
+        <div style="height:88px;border-radius:16px;background:#002B6E;display:flex;align-items:center;padding:0 28px;flex-shrink:0">
+          <span style="color:#fff;font-family:'Montserrat',sans-serif;font-weight:900;font-size:30px">ИННОПРОМ</span>
+        </div>
+        <div class="h3">ИННОПРОМ</div>
+        <div class="small-text" style="color:rgba(59,59,56,.5)">innoprom.com</div>
+        <div class="body" style="flex:1">«Новые смыслы городской среды: роль жилой и индустриальной недвижимости»</div>
+        <div style="height:160px;overflow:hidden;border-radius:24px;flex-shrink:0">
+          <img src="photos/innoprom-tribune.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:14% 30%;border-radius:48px;border-radius:0" alt="">
+        </div>
+      </div>
+
+      <!-- 100+ -->
+      <div class="card-sm" style="flex:1;display:flex;flex-direction:column;gap:20px">
+        <div style="height:88px;border-radius:16px;background:#5B1F7A;display:flex;align-items:center;padding:0 28px;flex-shrink:0">
+          <span style="color:#fff;font-family:'Montserrat',sans-serif;font-weight:900;font-size:26px">100+ TechnoBuild</span>
+        </div>
+        <div class="h3">100+ TechnoBuild</div>
+        <div class="small-text" style="color:rgba(59,59,56,.5)">forum-100.ru</div>
+        <div class="body" style="flex:1">«От инфраструктурных ограничений к точкам притяжения»</div>
+        <div style="height:160px;overflow:hidden;border-radius:24px;flex-shrink:0">
+          <img src="photos/forum100-tribune.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:62% top;border-radius:48px;border-radius:0" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="slide-frame">
+
+<div class="slide" style="background:radial-gradient(780px 640px at 100% 0%,rgba(61,90,138,.55),rgba(61,90,138,0) 70%),#fff">
+  <div class="pad" style="flex-direction:row;gap:60px">
+    <div style="flex:1;display:flex;flex-direction:column">
+      <div class="h1-alt">
+        <span class="h1-n">ТЕМЫ</span><br>
+        <span class="h1-g">ВЫСТУПЛЕНИЙ</span>
+      </div>
+      <div class="chip" style="margin-bottom:44px;display:inline-block">
+        Бизнес, логистика и коммерческая недвижимость
+      </div>
+
+      <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:0 60px;align-content:start">
+        <ul class="sq">
+          <li><strong>Недвижимость как драйвер:</strong> развития территорий</li>
+          <li><strong>Склад класса «А»:</strong> как инвестиционный актив</li>
+          <li><strong>Коммерческая недвижимость</strong> и человеческий капитал</li>
+          <li><strong>Логистика как основа</strong> устойчивого развития региона</li>
+        </ul>
+        <ul class="sq">
+          <li><strong>Цепочки поставок</strong> в условиях импортозамещения</li>
+          <li><strong>Автоматизация:</strong> снизить издержки, повысить качество</li>
+          <li><strong>Компания, в которую хочется прийти</strong> работать</li>
+          <li><strong>Соц. ответственный бизнес:</strong> от экономики к служению</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="width:380px;flex-shrink:0;overflow:hidden;border-radius:48px;margin:-80px -96px -80px 0">
+      <img src="photos/irina-folder-profile.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:center 10%;border-radius:48px;border-radius:0" alt="">
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="slide-frame">
+
+<div class="slide" style="background:radial-gradient(780px 640px at 100% 100%,rgba(61,90,138,.55),rgba(61,90,138,0) 70%),#fff">
+  <div class="pad">
+    <div class="h1-alt">
+      <span class="h1-n">ТЕМЫ</span><br>
+      <span class="h1-g">ПОД АУДИТОРИЮ</span>
+    </div>
+
+    <div style="flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;min-height:0;align-content:start">
+      <div>
+        <div class="chip" style="margin-bottom:36px;display:block">Молодёжь и вузы</div>
+        <ul class="sq" style="font-size:32px">
+          <li><strong>Профессии будущего:</strong> 2027–2030</li>
+          <li><strong>Как открыть свой бизнес</strong></li>
+          <li><strong>Правила составления резюме</strong></li>
+          <li><strong>Наставничество</strong> как социальный лифт</li>
+          <li><strong>Традиционные ценности</strong> сегодня</li>
+        </ul>
+      </div>
+      <div>
+        <div class="chip" style="margin-bottom:36px;display:block">Для женщин</div>
+        <ul class="sq" style="font-size:32px">
+          <li><strong>Женское лидерство</strong> через служение</li>
+          <li><strong>Бизнес, семья</strong> и общественная деятельность</li>
+          <li><strong>Как бизнес</strong> повышает рождаемость</li>
+          <li><strong>Наставничество:</strong> выход из декрета, смена профессии</li>
+        </ul>
+      </div>
+      <div>
+        <div class="chip" style="margin-bottom:36px;display:block">Церковная аудитория</div>
+        <ul class="sq" style="font-size:32px">
+          <li><strong>Православный взгляд</strong> на предпринимательство</li>
+          <li><strong>Служение через бизнес</strong> и общественную деятельность</li>
+          <li><strong>Социальные проекты</strong> при храмах</li>
+          <li><strong>Взаимодействие</strong> власти, бизнеса и НКО</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="slide-frame">
+
+<div class="slide" style="background:radial-gradient(780px 640px at 0% 0%,rgba(61,90,138,.55),rgba(61,90,138,0) 70%),#fff">
+  <div class="pad">
+    <div class="h1">
+      <span class="h1-n">ПРИЗНАНИЕ</span><br>
+      <span class="h1-g">НАГРАДЫ</span>
+    </div>
+
+    <div style="flex:1;display:flex;gap:32px;min-height:0">
+      <!-- 3 письма -->
+      <div style="flex:2.6;display:flex;gap:24px">
+        <div style="flex:1;display:flex;flex-direction:column;gap:18px">
+          <div style="flex:1;overflow:hidden;border-radius:48px">
+            <img src="photos/letter-governor.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:center center;border-radius:48px;border-radius:0" alt="">
+          </div>
+          <div>
+            <div style="font-family:'Inter';font-weight:700;font-size:35px;color:var(--navy);line-height:1.2">Губернатор Свердловской области</div>
+            <div class="small-text" style="margin-top:10px">Д. В. Паслер · 23.06.2026<br>За участие в социально значимых мероприятиях</div>
+          </div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:18px">
+          <div style="flex:1;overflow:hidden;border-radius:48px">
+            <img src="photos/letter-sreduralsk.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:center center;border-radius:48px;border-radius:0" alt="">
+          </div>
+          <div>
+            <div style="font-family:'Inter';font-weight:700;font-size:35px;color:var(--navy);line-height:1.2">Глава ГО Среднеуральск</div>
+            <div class="small-text" style="margin-top:10px">А. В. Стасёнок · 14.11.2025<br>За помощь ветеранам СВО и локальных войн</div>
+          </div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:18px">
+          <div style="flex:1;overflow:hidden;border-radius:48px">
+            <img src="photos/letter-military.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:center center;border-radius:48px;border-radius:0" alt="">
+          </div>
+          <div>
+            <div style="font-family:'Inter';font-weight:700;font-size:35px;color:var(--navy);line-height:1.2">Войсковая часть 34081</div>
+            <div class="small-text" style="margin-top:10px">20.05.2026<br>За гуманитарную помощь участникам СВО</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- также -->
+      <div style="flex:1;border-left:1px solid rgba(59,59,56,.12);padding-left:32px;
+                  display:flex;flex-direction:column;gap:20px">
+        <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:28px;
+             color:rgba(59,59,56,.4);text-transform:uppercase">ТАКЖЕ</div>
+        <ul class="tri" style="font-size:30px;flex:1">
+          <li>Фонд «Поможем Поддержим» — системная помощь</li>
+          <li>Фонд «Герои России» — совместные проекты</li>
+          <li>Администрация г. Среднеуральска</li>
+          <li>15+ писем из воинских частей</li>
+          <li>Другие государственные и общественные награды</li>
+        </ul>
+        <div style="flex:1;overflow:hidden;border-radius:48px;max-height:260px">
+          <img src="photos/award-sreduralsk.jpg" style="object-fit:cover;width:100%;height:100%;display:block;object-position:55% 15%;border-radius:48px;border-radius:0" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="slide-frame">
+
+<div class="slide" style="background:radial-gradient(780px 640px at 100% 100%,rgba(61,90,138,.55),rgba(61,90,138,0) 70%),#fff">
+  <div class="pad" style="flex-direction:row;gap:80px">
+
+    <!-- ЛЕВО — контакты -->
+    <div style="flex:1.1;display:flex;flex-direction:column;justify-content:center">
+      <div class="h1-alt" style="margin-bottom:40px">
+        <span class="h1-g">КОНТАКТЫ</span>
+      </div>
+
+      <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:70px;
+           color:var(--navy);line-height:.95;margin-bottom:24px">
+        Ирина<br>Лешукова
+      </div>
+      <div class="body" style="margin-bottom:48px">
+        Исполнительный директор<br>
+        ООО «Евразийская логистическая компания»<br>
+        Общественный деятель · Меценат
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div class="pill">+7 982 753-55-25</div>
+        <div class="pill">officemanager@elk-ural.com</div>
+        <div class="pill">t.me/irinaleshukova_official</div>
+        <div class="pill">elk-ural.ru</div>
+      </div>
+    </div>
+
+    <!-- ПРАВО — QR + фото -->
+    <div style="flex:.9;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px">
+      <div style="display:flex;gap:32px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+          <div style="width:220px;height:220px;background:#fff;border-radius:24px;
+                      padding:12px;box-shadow:0 4px 24px rgba(0,0,0,.08)">
+            <img src="data:image/png;base64,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" style="width:100%;height:100%">
+          </div>
+          <div class="small-text">Telegram</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+          <div style="width:220px;height:220px;background:#fff;border-radius:24px;
+                      padding:12px;box-shadow:0 4px 24px rgba(0,0,0,.08)">
+            <img src="data:image/png;base64,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" style="width:100%;height:100%">
+          </div>
+          <div class="small-text">elk-ural.ru</div>
+        </div>
+      </div>
+
+      <div style="height:100px;display:flex;align-items:center;justify-content:center;
+                  background:var(--card);border-radius:24px;padding:16px 40px">
+        <img src="photos/logo-severny.jpg" style="max-width:320px;max-height:72px;object-fit:contain">
+      </div>
+
+      <div class="footnote" style="max-width:480px;text-align:center;color:rgba(59,59,56,.45)">
+        *Instagram (Meta Platforms Inc.) — организация признана экстремистской,<br>
+        её деятельность запрещена на территории РФ.
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+<script>
+(function(){
+  var W=1920,H=1080;
+  function scale(){
+    var s=Math.min((window.innerWidth-48)/W,(window.innerHeight-48)/H,1);
+    document.querySelectorAll('.slide-frame').forEach(function(frame){
+      var slide=frame.querySelector('.slide');
+      if(slide){slide.style.transform='scale('+s+')';slide.style.transformOrigin='top left';}
+      frame.style.width=(W*s)+'px';
+      frame.style.height=(H*s)+'px';
+    });
+  }
+  scale();
+  window.addEventListener('resize',scale);
+})();
+</script>
+</html>
