@@ -120,22 +120,28 @@ ul.w li::before{border-left-color:#fff}
 .photo-card .pc-overlay{position:absolute;inset:0;background:rgba(19,35,61,.78)}
 .photo-card .pc-body{position:relative;padding:32px 40px;height:100%;display:flex;flex-direction:column}
 
-/* ── Новая карточка с фото сверху ── */
-.tcard{display:flex;flex-direction:column;border-radius:40px;overflow:hidden;background:#F6F6F6}
-.tcard-photo{aspect-ratio:4/3;flex-shrink:0;overflow:hidden;position:relative}
+/* ── Карточка с фото — плавный переход ── */
+.tcard{position:relative;background:#F6F6F6;border-radius:40px;overflow:hidden;display:flex;flex-direction:column}
+.tcard-light{background:#fff}
+.tcard-photo{position:relative;height:54%;flex-shrink:0;overflow:hidden}
 .tcard-photo img{width:100%;height:100%;object-fit:cover;display:block}
-.tcard-body{flex:1;position:relative;margin-top:-40px;background:#F6F6F6;
-            border-radius:32px 32px 0 0;padding:32px 36px 36px}
+.tcard-photo::after{content:'';position:absolute;left:0;right:0;bottom:0;height:55%;
+  background:linear-gradient(to bottom,rgba(246,246,246,0) 0%,rgba(246,246,246,.75) 55%,#F6F6F6 100%);
+  pointer-events:none}
+.tcard-light .tcard-photo::after{
+  background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.75) 55%,#fff 100%)}
+.tcard-photo--solid{height:45%}
+.tcard-photo--solid::after{display:none}
+.tcard-body{flex:1;position:relative;margin-top:-90px;padding:0 36px 36px;background:transparent}
+.tcard-photo--solid + .tcard-body{margin-top:0;padding-top:32px}
 .tcard-body .label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;
                    line-height:1.2;letter-spacing:.02em;text-transform:uppercase;
                    color:#13233D;margin-bottom:12px}
-.tcard-body .h3{font-size:30px;line-height:1.2;margin-bottom:16px;color:#13233D}
-.tcard-body ul.tri{font-size:26px;line-height:1.3}
+.tcard-body .h3{font-size:30px;line-height:1.2;margin-bottom:12px;color:#13233D}
+.tcard-body ul.tri{font-size:24px;line-height:1.3}
 .tcard-body ul.tri li{color:#3B3B38}
-.tcard-body ul.tri li+li{margin-top:10px}
+.tcard-body ul.tri li+li{margin-top:8px}
 .tcard-body ul.tri li::before{border-left-color:#13233D}
-.tcard-light{background:#fff}
-.tcard-light .tcard-body{background:#fff}
 </style>
 </head>
 <body>
@@ -301,7 +307,7 @@ ul.w li::before{border-left-color:#fff}
 
       <!-- 01: нет фото → тёмный блок с цифрой -->
       <div class="tcard">
-        <div class="tcard-photo" style="background:#13233D">
+        <div class="tcard-photo tcard-photo--solid" style="background:#13233D">
           <div style="position:absolute;left:36px;bottom:28px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:140px;line-height:1;color:#fff;pointer-events:none">01</div>
         </div>
         <div class="tcard-body">
@@ -317,7 +323,7 @@ ul.w li::before{border-left-color:#fff}
 
       <!-- 02: нет фото → тёмный блок с цифрой -->
       <div class="tcard">
-        <div class="tcard-photo" style="background:#13233D">
+        <div class="tcard-photo tcard-photo--solid" style="background:#13233D">
           <div style="position:absolute;left:36px;bottom:28px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:140px;line-height:1;color:#fff;pointer-events:none">02</div>
         </div>
         <div class="tcard-body">
@@ -428,7 +434,7 @@ ul.w li::before{border-left-color:#fff}
         <div class="tcard-body">
           <div class="h3">Образование и храмы</div>
           <ul class="tri">
-            <li>Шефство над школой МАОУ-СОШ&nbsp;№6 с&nbsp;2025 года</li>
+            <li>Шефство над школой №6 с&nbsp;2025 года</li>
             <li>Программа «Нравственное развитие»</li>
             <li>Ремонт Храма свт. Николая</li>
             <li>Помощь служителям храма в Донецке</li>
@@ -445,42 +451,53 @@ ul.w li::before{border-left-color:#fff}
   <div class="pad">
     <div style="display:flex;gap:56px;align-items:flex-end;margin-bottom:44px">
       <div class="h1" style="margin-bottom:0;flex-shrink:0">Опыт<br><span class="g">выступлений</span></div>
-      <div class="quote-card" style="flex:1;padding:30px 44px 30px 104px">
-        <div class="quote-text" style="font-size:30px">Нужно взаимодействовать с государством. Только вместе мы можем реализовывать большие проекты — каждая инициатива должна иметь нормативно-правовую значимость</div>
+      <div class="quote-card" style="flex:1;padding:24px 40px 24px 96px">
+        <div class="quote-text" style="font-size:26px">Нужно взаимодействовать с государством. Только вместе мы можем реализовывать большие проекты — каждая инициатива должна иметь нормативно-правовую значимость</div>
       </div>
     </div>
     <div style="flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;min-height:0">
-      <div class="card" style="padding:28px;display:flex;flex-direction:column">
-        <div class="photo" style="height:250px;border-radius:32px;flex-shrink:0"><img src="photos/socio-close.jpg" style="object-position:74% 18%" alt=""></div>
-        <div style="padding:28px 16px 0">
-          <div class="h3" style="font-size:36px">V Форум «СОЦИО»</div>
-          <div class="small" style="color:var(--muted);margin:6px 0 16px">socioforum.pro</div>
-          <div style="font-size:30px;line-height:1.25">«Взаимодействие органов власти, бизнеса и НКО»</div>
+
+      <div class="tcard">
+        <div class="tcard-photo" style="height:58%;border-radius:40px 40px 0 0">
+          <img src="photos/socio-close.jpg" style="object-position:70% 25%" alt="">
+        </div>
+        <div class="tcard-body" style="padding-bottom:40px">
+          <div class="h3" style="font-size:34px;margin-bottom:8px">V Форум «СОЦИО»</div>
+          <div style="font-size:24px;color:var(--muted);margin-bottom:14px">socioforum.pro</div>
+          <div style="font-size:26px;line-height:1.3;color:var(--graphite)">«Взаимодействие органов власти, бизнеса и НКО»</div>
         </div>
       </div>
-      <div class="card" style="padding:28px;display:flex;flex-direction:column">
-        <div class="photo" style="height:250px;border-radius:32px;flex-shrink:0"><img src="photos/innoprom-tribune.jpg" style="object-position:14% 30%" alt=""></div>
-        <div style="padding:28px 16px 0">
-          <div class="h3" style="font-size:36px">ИННОПРОМ</div>
-          <div class="small" style="color:var(--muted);margin:6px 0 16px">innoprom.com</div>
-          <div style="font-size:30px;line-height:1.25">«Новые смыслы городской среды: роль жилой и индустриальной недвижимости»</div>
+
+      <div class="tcard">
+        <div class="tcard-photo" style="height:58%;border-radius:40px 40px 0 0">
+          <img src="photos/innoprom-tribune.jpg" style="object-position:20% 35%" alt="">
+        </div>
+        <div class="tcard-body" style="padding-bottom:40px">
+          <div class="h3" style="font-size:34px;margin-bottom:8px">ИННОПРОМ</div>
+          <div style="font-size:24px;color:var(--muted);margin-bottom:14px">innoprom.com</div>
+          <div style="font-size:26px;line-height:1.3;color:var(--graphite)">«Новые смыслы городской среды: роль жилой и индустриальной недвижимости»</div>
         </div>
       </div>
-      <div class="card" style="padding:28px;display:flex;flex-direction:column">
-        <div class="photo" style="height:250px;border-radius:32px;flex-shrink:0"><img src="photos/forum100-tribune.jpg" style="object-position:62% top" alt=""></div>
-        <div style="padding:28px 16px 0">
-          <div class="h3" style="font-size:36px">100+ TechnoBuild</div>
-          <div class="small" style="color:var(--muted);margin:6px 0 16px">forum-100.ru</div>
-          <div style="font-size:30px;line-height:1.25">«От инфраструктурных ограничений к точкам притяжения»</div>
+
+      <div class="tcard">
+        <div class="tcard-photo" style="height:58%;border-radius:40px 40px 0 0">
+          <img src="photos/forum100-tribune.jpg" style="object-position:60% 20%" alt="">
+        </div>
+        <div class="tcard-body" style="padding-bottom:40px">
+          <div class="h3" style="font-size:34px;margin-bottom:8px">100+ TechnoBuild</div>
+          <div style="font-size:24px;color:var(--muted);margin-bottom:14px">forum-100.ru</div>
+          <div style="font-size:26px;line-height:1.3;color:var(--graphite)">«От инфраструктурных ограничений к точкам притяжения»</div>
         </div>
       </div>
+
     </div>
   </div>
 </div></div>
 
 <!-- ═════════ 9 · ТЕМЫ: БИЗНЕС ═════════ -->
-<div class="slide-frame"><div class="slide bg-dark is-dark" style="flex-direction:row">
-  <div class="pad" style="flex:1;padding-right:72px">
+<div class="slide-frame"><div class="slide bg-dark is-dark">
+  <!-- Текст слева, фото absolute справа -->
+  <div class="pad" style="flex:1;padding-right:640px">
     <div class="h1 h1-alt">Темы<br><span class="g">выступлений</span></div>
     <div class="chip" style="align-self:flex-start;margin-bottom:56px">Бизнес, логистика и коммерческая недвижимость</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 64px">
@@ -498,8 +515,9 @@ ul.w li::before{border-left-color:#fff}
       </ul>
     </div>
   </div>
-  <div class="photo" style="width:420px;flex-shrink:0;border-radius:48px;margin:64px 64px 64px 0">
-    <img src="photos/irina-folder-profile.jpg" style="object-position:center 10%" alt="">
+  <!-- Фото: 530×990 → кадр 506×936, right:64px top:72px -->
+  <div style="position:absolute;right:64px;top:72px;width:506px;height:936px;border-radius:48px;overflow:hidden">
+    <img src="photos/irina-folder-profile.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block" alt="">
   </div>
 </div></div>
 
@@ -563,9 +581,9 @@ ul.w li::before{border-left-color:#fff}
         </div>
       </div>
       <div style="width:470px;flex-shrink:0;display:flex;flex-direction:column;gap:28px">
-        <div class="photo" style="height:330px;border-radius:32px;flex-shrink:0"><img src="photos/award-sreduralsk.jpg" style="object-position:55% 18%" alt=""></div>
+        <div class="photo" style="height:260px;border-radius:32px;flex-shrink:0"><img src="photos/award-sreduralsk.jpg" style="object-position:55% 18%" alt=""></div>
         <div class="label">Также</div>
-        <ul class="tri" style="font-size:28px;display:flex;flex-direction:column;gap:14px">
+        <ul class="tri" style="font-size:24px;display:flex;flex-direction:column;gap:12px">
           <li><strong>Фонд «Поможем Поддержим»</strong> — системная помощь</li>
           <li><strong>Фонд «Герои России»</strong> — совместные проекты</li>
           <li>Администрация г.&nbsp;Среднеуральска</li>
