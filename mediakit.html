@@ -235,21 +235,7 @@ ul.w li::before{border-left-color:#fff}
 
 <!-- ═════════ 2 · ХРОНОЛОГИЯ ═════════ -->
 <div class="slide-frame"><div class="slide bg-l1" style="flex-direction:row">
-  <div style="position:relative;width:796px;flex-shrink:0;margin:64px 0 64px 64px">
-    <div class="photo" style="position:absolute;inset:0;border-radius:48px">
-      <img src="photos/irina-portrait-main.jpg" style="object-position:center 5%" alt="">
-    </div>
-    <div style="position:absolute;left:0;right:0;bottom:0;height:520px;border-radius:0 0 48px 48px;
-                background:linear-gradient(to top,var(--navy) 42%,rgba(19,35,61,0))"></div>
-    <div style="position:absolute;left:64px;right:40px;bottom:64px">
-      <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:70px;line-height:1;color:#fff">Ирина<br>Лешукова</div>
-      <div style="font-size:30px;line-height:1.3;color:rgba(255,255,255,.85);margin-top:24px">
-        Исполнительный директор ТЛЦ «Северный»<br>Общественный деятель · Меценат
-      </div>
-    </div>
-  </div>
-
-  <div style="flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;padding:80px 110px 80px 80px">
+  <div style="flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;padding:80px 80px 80px 110px">
     <div class="h2" style="margin-bottom:56px">Хронология<br>профессиональной карьеры:</div>
     <ul class="tri" style="font-size:32px;display:flex;flex-direction:column;gap:36px">
       <li><strong>Исполнительный директор ТЛЦ «Северный»</strong> — мультитемпературный склад класса «А», первый в УрФО</li>
@@ -258,6 +244,9 @@ ul.w li::before{border-left-color:#fff}
       <li><strong>Спикер</strong> — ИННОПРОМ, СОЦИО Форум, 100+ TechnoBuild, форумы по социальной ответственности бизнеса</li>
       <li><strong>Награды</strong> — благодарственные письма от Губернатора Паслера, Главы ГО Среднеуральск, в/ч 34081 и 15+ иных структур</li>
     </ul>
+  </div>
+  <div style="width:700px;flex-shrink:0;position:relative;overflow:hidden">
+    <img src="photos/irina-red-mic-cutout.png" style="position:absolute;bottom:0;right:-10px;height:1080px;width:auto" alt="">
   </div>
 </div></div>
 
@@ -278,15 +267,15 @@ ul.w li::before{border-left-color:#fff}
       <div><div class="big-n">15+</div><div class="stat-lbl">наград и благодарственных писем</div></div>
     </div>
   </div>
-  <div class="photo" style="width:560px;flex-shrink:0;border-radius:48px;margin:64px 64px 64px 0">
-    <img src="photos/irina-red-mic.jpg" style="object-position:center 10%" alt="">
+  <div style="width:580px;flex-shrink:0;position:relative;overflow:hidden">
+    <img src="photos/irina-red-mic-cutout.png" style="position:absolute;bottom:0;right:-40px;height:1060px;width:auto" alt="">
   </div>
 </div></div>
 
 <!-- ═════════ 4 · ЭКСПЕРТИЗА ═════════ -->
 <div class="slide-frame"><div class="slide bg-l2">
-  <!-- Правая колонка: 2 фото 660×440, вертикально по центру слайда, right:64px -->
-  <div style="position:absolute;right:64px;top:88px;width:660px;display:flex;flex-direction:column;gap:24px">
+  <!-- Правая колонка: 2 фото 500×440, right:64px -->
+  <div style="position:absolute;right:64px;top:88px;width:500px;display:flex;flex-direction:column;gap:24px">
     <div style="height:440px;border-radius:40px;overflow:hidden">
       <img src="photos/innoprom-tribune.jpg" style="width:100%;height:100%;object-fit:cover;object-position:30% 30%" alt="">
     </div>
@@ -294,8 +283,8 @@ ul.w li::before{border-left-color:#fff}
       <img src="photos/socio-close.jpg" style="width:100%;height:100%;object-fit:cover;object-position:65% 25%" alt="">
     </div>
   </div>
-  <!-- Левая колонка: текст, left:124px до 64px от фото (padding-right:788px) -->
-  <div class="pad" style="padding-right:788px">
+  <!-- Левая колонка: текст, больше места -->
+  <div class="pad" style="padding-right:628px">
     <div class="h1">Экспертиза</div>
     <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:40px;min-height:0">
       <div>
@@ -353,39 +342,36 @@ ul.w li::before{border-left-color:#fff}
 <div class="slide-frame"><div class="slide bg-l3">
   <div class="pad" style="padding-right:96px">
     <div class="h1" style="margin-bottom:44px">Социальные треки<br><span class="g">в компании</span></div>
-    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:24px;min-height:0">
+    <div style="flex:1;display:flex;gap:24px;min-height:0">
 
-      <div class="tcard">
-        <div class="tcard-photo">
-          <img src="photos/socio-duo.jpg" style="object-position:center 35%" alt="">
+      <!-- Левый блок: две горизонтальные карточки без фото -->
+      <div style="flex:1;display:flex;flex-direction:column;gap:24px">
+        <div class="tcard" style="flex:1">
+          <div class="tcard-body" style="margin-top:0;border-radius:40px;display:flex;flex-direction:column;justify-content:center">
+            <div class="label" style="margin-bottom:14px">01 · Рождаемость</div>
+            <div class="h3" style="margin-bottom:18px">Поддержка в декрете</div>
+            <ul class="tri">
+              <li>Выплаты от компании все 3 года</li>
+              <li>По стажу, зарплате и заслугам</li>
+              <li>Независимо от государственных выплат</li>
+            </ul>
+          </div>
         </div>
-        <div class="tcard-body">
-          <div class="label">01 · Рождаемость</div>
-          <div class="h3">Поддержка в декрете</div>
-          <ul class="tri">
-            <li>Выплаты от компании все 3 года</li>
-            <li>По стажу, зарплате и заслугам</li>
-            <li>Независимо от государственных выплат</li>
-          </ul>
+        <div class="tcard" style="flex:1">
+          <div class="tcard-body" style="margin-top:0;border-radius:40px;display:flex;flex-direction:column;justify-content:center">
+            <div class="label" style="margin-bottom:14px">02 · Здоровье</div>
+            <div class="h3" style="margin-bottom:18px">Медстрахование в декрете</div>
+            <ul class="tri">
+              <li>Расширенный пакет: УЗИ и гинекология</li>
+              <li>На весь срок декрета</li>
+              <li>Матери в декрете не теряют медполис</li>
+            </ul>
+          </div>
         </div>
       </div>
 
-      <div class="tcard">
-        <div class="tcard-photo">
-          <img src="photos/irina-red-mic.jpg" style="object-fit:cover;object-position:50% 0% !important" alt="">
-        </div>
-        <div class="tcard-body">
-          <div class="label">02 · Здоровье</div>
-          <div class="h3">Медстрахование в декрете</div>
-          <ul class="tri">
-            <li>Расширенный пакет: УЗИ и гинекология</li>
-            <li>На весь срок декрета</li>
-            <li>Матери в декрете не теряют медполис</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tcard">
+      <!-- Карточка 03: ЗОЖ (с фото, без изменений) -->
+      <div class="tcard" style="flex:1">
         <div class="tcard-photo">
           <img src="photos/pingpong-1.jpg" style="object-position:center 40%" alt="">
         </div>
@@ -400,7 +386,8 @@ ul.w li::before{border-left-color:#fff}
         </div>
       </div>
 
-      <div class="tcard">
+      <!-- Карточка 04: Спорт (с фото, без изменений) -->
+      <div class="tcard" style="flex:1">
         <div class="tcard-photo">
           <img src="photos/yoga-1.jpg" style="object-position:center 30%" alt="">
         </div>
@@ -542,8 +529,7 @@ ul.w li::before{border-left-color:#fff}
 
 <!-- ═════════ 9 · ТЕМЫ: БИЗНЕС ═════════ -->
 <div class="slide-frame"><div class="slide bg-dark is-dark">
-  <!-- Текст слева, фото absolute справа -->
-  <div class="pad" style="flex:1;padding-right:640px">
+  <div class="pad" style="flex:1">
     <div class="h1 h1-alt">Темы<br><span class="g">выступлений</span></div>
     <div class="chip" style="align-self:flex-start;margin-bottom:56px">Бизнес, логистика и коммерческая недвижимость</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 64px">
@@ -560,10 +546,6 @@ ul.w li::before{border-left-color:#fff}
         <li><strong>Социально ответственный бизнес:</strong> от экономики к служению</li>
       </ul>
     </div>
-  </div>
-  <!-- Фото: 530×990 → кадр 506×936, right:64px top:72px -->
-  <div style="position:absolute;right:64px;top:72px;width:506px;height:936px;border-radius:48px;overflow:hidden">
-    <img src="photos/irina-folder-profile.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block" alt="">
   </div>
 </div></div>
 
@@ -648,8 +630,7 @@ ul.w li::before{border-left-color:#fff}
 
   <!-- Кнопки: ряд 1 -->
   <div style="position:absolute;left:114px;top:760px;display:flex;gap:20px;align-items:center">
-    <div class="pill" style="border-radius:28px">+7 982 753-55-25</div>
-    <div class="logo-pill"><img src="photos/logo-severny-clean.png" alt="ТЛЦ «Северный»"></div>
+    <div class="pill" style="border-radius:28px;color:#fff">+7 982 753-55-25</div>
   </div>
 
   <!-- Кнопки: ряд 2 -->
@@ -660,7 +641,7 @@ ul.w li::before{border-left-color:#fff}
 
   <!-- Правая часть: фото от x=1180 до правого края -->
   <div style="position:absolute;left:1180px;top:0;width:740px;height:1080px;overflow:hidden;border-radius:48px 0 0 48px">
-    <img src="photos/irina-portrait-main.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 12%;display:block" alt="">
+    <img src="photos/irina-folder-profile.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block" alt="">
     <!-- Градиент снизу -->
     <div style="position:absolute;left:0;right:0;bottom:0;height:480px;background:linear-gradient(to top,rgba(19,35,61,.92) 0%,rgba(19,35,61,0) 45%)"></div>
     <!-- Имя и должность -->
